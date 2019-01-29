@@ -1,57 +1,34 @@
 ;;; private/my/+bindings.el -*- lexical-binding: t; -*-
 
-(when IS-MAC (setq mac-command-modifier 'meta
-                   mac-option-modifier  'alt))
-
 (map!
  ;; overrides other minor mode keymaps (just for non-evil)
  (:map override ;; general-override-mode-map
-   "M-q" (if (daemonp) #'delete-frame #'evil-quit-all)
-   "M-p" #'counsel-git
+   "M-q" #'evil-quit-all
    "M-;" #'+my/insert-semicolon-at-the-end-of-this-line
    "C-M-;" #'+my/delete-semicolon-at-the-end-of-this-line)
- "M-`"   #'other-frame
- "C-M-o" #'other-frame
- ;; fix OS window/frame navigation/manipulation keys
- "M-w" #'delete-window
- "M-W" #'delete-frame
- "M-n" #'+default/new-buffer
- "M-N" #'make-frame
- ;; Restore OS undo, save, copy, & paste keys (without cua-mode, because
- ;; it imposes some other functionality and overhead we don't need)
- "M-z" #'undo
- "M-c" (if (featurep 'evil) #'evil-yank #'copy-region-as-kill)
- "M-v" #'yank
- "M-s" #'evil-write-all
- ;; Buffer-local font scaling
- "M-+" (λ! (text-scale-set 0))
- "M-=" #'text-scale-increase
- "M--" #'text-scale-decrease
- ;; Conventional text-editing keys & motions
- "M-a" #'mark-whole-buffer
- :gi [M-return]    #'+default/newline-below
- :gi [M-S-return]  #'+default/newline-above
- :gi [M-backspace] #'backward-kill-word
- :gi [M-left]      #'backward-word
- :gi [M-right]     #'forward-word
- ;; Swiper
- "M-f" #'swiper
- "C-s" #'swiper
- ;; Help
+
  "C-h h" nil
  "C-h C-k" #'find-function-on-key
  "C-h C-f" #'find-function-at-point
  "C-h C-v" #'find-variable-at-point
  "<f8>"    #'describe-mode
- ;; Others
- "M-e" #'+ivy/switch-workspace-buffer
+
+ "C-M-o"  #'other-frame
  "C-M-\\" #'indent-region-or-buffer
+ "C-`" #'+popup/toggle
+ "M-w" #'+workspace/close-window-or-workspace
+ "M-a" #'mark-whole-buffer
+ "M-c" #'evil-yank
+ "M-s" #'evil-write-all
+ "M-f" #'swiper
+ "C-s" #'swiper
+ "M-e" #'+ivy/switch-workspace-buffer
+ "M-p" #'counsel-git
+ "C-;" #'flyspell-correct-previous-word-generic
  "M-m" #'kmacro-call-macro
- "M-/" #'evilnc-comment-or-uncomment-lines
- "C-;" #'flyspell-correct-previous-word-generic)
+ "M-/" #'evilnc-comment-or-uncomment-lines)
 
 (map!
- ;; Unix text-editing keys & motions
  :gi "C-n" #'next-line
  :gi "C-p" #'previous-line
  :gi "C-b" #'backward-char
@@ -100,7 +77,6 @@
         :desc "Deer"      "j" #'deer)
       (:prefix "g"                      ; git
         :desc "Magit browse commit" "O" #'+vc/git-browse-commit
-        :desc "Magit wip worktree"  "w" #'magit-wip-log-worktree
         :desc "M-x magit-*" "*" (+my/prefix-M-x "magit-"))
       (:prefix "h"                      ; help
         "C" #'helpful-command)
@@ -285,7 +261,7 @@
      (:when IS-MAC
        :desc "Reveal in Typora" "o" #'+macos/reveal-in-typora)
      (:when IS-LINUX
-       :desc "Reveal in Typora" "o" #'+shell/reveal-in-typora)
+       :desc "Reveal in Typora" "o" #'+linux/reveal-in-typora)
      :desc "Insert header line"      "-" #'org-table-insert-hline
      :desc "Crete Table from region" "|" #'org-table-create-or-convert-from-region
      :desc "Edit" "x" (+my/simulate-key "C-c C-s")

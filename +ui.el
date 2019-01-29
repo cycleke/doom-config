@@ -1,28 +1,31 @@
 ;;; private/my/+ui.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-tomorrow-night)
 
-(when (display-graphic-p)
-  (cond (IS-MAC
-         (setq doom-font (font-spec :family "Operator Mono Lig" :size 16)
-               doom-big-font (font-spec :family "Operator Mono Lig" :size 22)
-               +modeline-height 32))
-        (IS-LINUX
-         (setq resolution-factor (eval (/ (x-display-pixel-height) 1080.0)))
-         (setq doom-font (font-spec :family "Operator Mono" :size (eval (round (* 16 resolution-factor))) :weight 'light)
-               doom-big-font (font-spec :family "Operator Mono" :size (eval (round (* 22 resolution-factor))))
-               +modeline-height (eval (round (* 32 resolution-factor))))))
+(cond (IS-MAC
+       (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size 16)
+             doom-big-font (font-spec :family "Source Code Pro for Powerline" :size 22)
+             +modeline-height 32))
+      (IS-LINUX
+       (setq resolution-factor (eval (/ (x-display-pixel-height) 1080.0)))
+       (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size (eval (round (* 16 resolution-factor))))
+             doom-big-font (font-spec :family "Source Code Pro for Powerline" :size (eval (round (* 22 resolution-factor))))
+             +modeline-height (eval (round (* 32 resolution-factor))))))
 
-  ;; set initl screen size
-  (setq initial-frame-alist
-        '((width . 110)
-          (height . 65))))
+(dolist (charset '(kana han cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font) charset
+                    (font-spec :family "Microsoft YaHei" :size 14)))
 
 (setq +doom-modeline-buffer-file-name-style 'relative-to-project)
 
 (setq +workspaces-on-switch-project-behavior t)
 
 (remove-hook 'doom-init-ui-hook #'blink-cursor-mode)
+
+;; set initl screen size
+(setq initial-frame-alist
+      '((width . 110)
+        (height . 65)))
 
 ;; disable line-numbers by default
 (setq display-line-numbers-type nil)
@@ -71,8 +74,8 @@
 
 (add-hook! 'process-menu-mode-hook
   (setq-local tabulated-list-format [("Process" 30 t)
-			                         ("PID"      7 t)
-			                         ("Status"   7 t)
-			                         ("Buffer"  15 t)
-			                         ("TTY"     12 t)
-			                         ("Command"  0 t)]))
+                                     ("PID"      7 t)
+                                     ("Status"   7 t)
+                                     ("Buffer"  15 t)
+                                     ("TTY"     12 t)
+                                     ("Command"  0 t)]))

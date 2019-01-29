@@ -18,7 +18,7 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
-        ;;+childframe     ; a nicer company UI (Emacs 26+ only)
+        +childframe     ; a nicer company UI (Emacs 26+ only)
         )
        ;;(helm             ; the *other* search engine for love and life
        ;;+fuzzy)          ; enable fuzzy search backend for helm
@@ -88,7 +88,7 @@
 
        :lang
        ;;assembly          ; assembly for fun or debugging
-       cc                ; C/C++/Obj-C madness
+       (cc +irony)                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -100,18 +100,18 @@
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
-       go                ; the hipster dialect
+       ;;go                ; the hipster dialect
        ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        java              ; the poster child for carpal tunnel syndrome ;(java +meghanada)
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
-       ;;latex             ; writing papers in Emacs has never been so fun
+       latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-      (markdown          ; writing docs for people to ignore
-       +pandoc)          ; pandoc support
+       (markdown          ; writing docs for people to ignore
+        +pandoc)          ; pandoc support
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -129,7 +129,7 @@
         +pyenv
         +pyvenv
         +conda)            ; beautiful is better than ugly
-       ;;qt                ; the 'cutest' gui framework ever
+       qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
@@ -150,8 +150,8 @@
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
        (write            ; emacs as a word processor (latex + org + markdown)
-       +wordnut         ; wordnet (wn) search
-       +langtool)       ; a proofreader (grammar/style check) for Emacs
+        +wordnut         ; wordnet (wn) search
+        +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :collab
        ;;floobits          ; peer programming for a price
@@ -169,5 +169,4 @@
 
        :private
        my-cc
-       lsp-intellij
-       )
+       lsp-intellij)

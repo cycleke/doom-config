@@ -33,22 +33,9 @@
 
   (setq org-log-into-drawer "LOGBOOK")
 
-  ;; Schedule/deadline popup with default time
-  (defvar org-default-time "10:30"
-    "The default time for deadlines.")
-
-  (defun advise-org-default-time (func arg &optional time)
-    (let ((old-time (symbol-function #'org-read-date)))
-      (cl-letf (((symbol-function #'org-read-date)
-                 #'(lambda (&optional a b c d default-time f g)
-                     (let ((default-time (or default-time
-                                             org-default-time)))
-                       (apply old-time a b c d f default-time g)
-                       ))))
-        (apply func arg time))))
-
-  (advice-add #'org-deadline :around #'advise-org-default-time)
-  (advice-add #'org-schedule :around #'advise-org-default-time))
+  (set-evil-initial-state!
+    '(org-agenda-mode)
+    'emacs))
 
 
 (def-package! org-wild-notifier
@@ -56,8 +43,7 @@
   :init
   (add-hook 'doom-post-init-hook #'org-wild-notifier-mode t)
   :config
-  (setq org-wild-notifier-alert-time 15
-        alert-default-style (if IS-MAC 'osx-notifier 'libnotify)))
+  (setq alert-default-style (if IS-MAC 'osx-notifier 'libnotify)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

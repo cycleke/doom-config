@@ -1,0 +1,28 @@
+;;; ~/.doom.d/+functions.el -*- lexical-binding: t; -*-
+
+(defun my/compile-without-debug ()
+  "Compile current buffer"
+  (interactive)
+  (let (filename suffix progname)
+    (setq filename (file-name-nondirectory buffer-file-name))
+    (setq progname (file-name-sans-extension filename))
+    (setq suffix (file-name-extension filename))
+    (if (string= suffix "c")
+        (compile (concat "gcc " filename " -o " progname " -O2 -Wall -lm")))
+    (if (or (string= suffix "cc") (string= suffix "cpp"))
+        (compile (concat "g++ " filename " -o " progname " -O2 -Wall -lm -std=c++11")))
+    (if (string= suffix "tex")
+        (compile (concat "xelatex " filename)))
+    ))
+(defun my/compile-with-debug ()
+  "Compile current buffer"
+  (interactive)
+  (let (filename suffix progname)
+    (setq filename (file-name-nondirectory buffer-file-name))
+    (setq progname (file-name-sans-extension filename))
+    (setq suffix (file-name-extension filename))
+    (if (string= suffix "c")
+        (compile (concat "gcc " filename " -o " progname " -g -Wall -lm")))
+    (if (or (string= suffix "cc") (string= suffix "cpp"))
+        (compile (concat "g++ " filename " -o " progname " -g -Wall -lm -std=c++11")))
+    ))

@@ -1,0 +1,78 @@
+# -*- mode: snippet -*-
+# name: Fast Input And Output for Integer
+# key: FastIO
+# --
+namespace FastIO {
+
+const int BUFFER_SIZE = 1 << 16 | 127;
+
+// Input
+char i_buffer[BUFFER_SIZE], *i_begin(i_buffer), *i_end(i_buffer);
+
+char getChar() {
+  if (i_begin == i_end) {
+    i_end = i_buffer + fread(i_buffer, 1, BUFFER_SIZE, stdin);
+    i_begin = i_buffer;
+  }
+  return (i_begin == i_end) ? EOF : *i_begin++;
+}
+
+template <class T> int getInt(T &x) {
+  static char ch;
+  static int sign;
+
+  do {
+    ch = getChar();
+    if (ch == EOF)
+      return 0;
+  } while ((ch < '0' || ch > '9') && ch != '-');
+
+  if (ch == '-') {
+    sign = -1;
+    x = 0;
+  } else {
+    sign = 1;
+    x = ch - '0';
+  }
+
+  for (ch = getChar(); ch >= '0' && ch <= '9'; ch = getChar())
+    x = x * 10 + ch - '0';
+  if (sign == -1)
+    x = -x;
+  return 1;
+}
+
+// Output
+char o_buffer[BUFFER_SIZE], *o_begin(o_buffer), *o_end(o_buffer + BUFFER_SIZE);
+
+void putChar(const char &ch) {
+  if (o_begin == o_end) {
+    fwrite(o_buffer, 1, BUFFER_SIZE, stdout);
+    o_begin = o_buffer;
+  }
+  *o_begin++ = ch;
+}
+
+template <class T> void putInt(T a) {
+  if (a == 0) {
+    putChar('0');
+    return;
+  }
+  if (a < 0) {
+    a = -a;
+    putChar('-');
+  }
+  static char c[20];
+  static int c0;
+  c0 = 0;
+  while (a) {
+    c[c0++] = a % 10 + '0';
+    a /= 10;
+  }
+  while (c0--)
+    putChar(c[c0]);
+}
+
+void close() { fwrite(o_buffer, 1, o_begin - o_buffer, stdout); }
+
+} // namespace FastIO
