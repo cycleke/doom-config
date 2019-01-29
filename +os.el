@@ -18,7 +18,7 @@
   (setenv "SHELL" "zsh"))
 
 (when IS-WINDOWS
-  (add-to-list 'exec-path "C:/Users/ztlevi/emax/bin"))
+  (add-to-list 'exec-path "C:/Users/cycleke/emax/bin"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
