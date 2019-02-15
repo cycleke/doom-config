@@ -1,6 +1,6 @@
 ;;; private/my/+ui.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-tomorrow-day)
 
 (cond (IS-MAC
        (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size 16)
@@ -14,7 +14,7 @@
 
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
-                    (font-spec :family "Microsoft YaHei" :size 14)))
+                    (font-spec :family "Microsoft YaHei" :size (eval (round (* 16 resolution-factor))))))
 
 (setq +doom-modeline-buffer-file-name-style 'relative-to-project)
 
