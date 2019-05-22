@@ -1,15 +1,15 @@
 ;;; private/my/+ui.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-tomorrow-day)
+(setq doom-theme 'doom-tomorrow-night)
 
 (cond (IS-MAC
-       (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size 16)
-             doom-big-font (font-spec :family "Source Code Pro for Powerline" :size 22)
+       (setq doom-font (font-spec :family "GoMono Nerd Font" :size 16)
+             doom-big-font (font-spec :family "GoMono Nerd Font" :size 22)
              +modeline-height 32))
       (IS-LINUX
        (setq resolution-factor (eval (/ (x-display-pixel-height) 1080.0)))
-       (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size (eval (round (* 16 resolution-factor))))
-             doom-big-font (font-spec :family "Source Code Pro for Powerline" :size (eval (round (* 22 resolution-factor))))
+       (setq doom-font (font-spec :family "GoMono Nerd Font" :size (eval (round (* 16 resolution-factor))))
+             doom-big-font (font-spec :family "GoMono Nerd Font" :size (eval (round (* 22 resolution-factor))))
              +modeline-height (eval (round (* 32 resolution-factor))))))
 
 (dolist (charset '(kana han cjk-misc bopomofo))
