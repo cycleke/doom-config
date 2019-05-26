@@ -15,10 +15,12 @@
            symbol-overlay
            tldr
            (blog-admin :recipe (:fetcher github :repo "codefalling/blog-admin"))
-           youdao-dictionary
            wucuo
            org-wild-notifier
            forge
+           auctex-latexmk
+           chinese-word-at-point
+           latex-extra latex-pretty-symbols
            )
 
 ;; programming
@@ -26,4 +28,5 @@
            import-js indium
            importmagic py-isort
            rust-mode
+           irony flycheck-irony
            )

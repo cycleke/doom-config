@@ -3,17 +3,6 @@
 
 (doom! :feature
        ;;debugger          ; FIXME stepping through code, to help you add bugs
-       eval              ; run code, run (also, repls)
-       (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
-       (lookup           ; helps you navigate your code and documentation
-        +devdocs         ; ...on devdocs.io online
-        +docsets)        ; ...or in Dash docsets locally
-       snippets          ; my elves. They type so I don't have to
-       spellcheck        ; tasing you for misspelling mispelling
-       (syntax-checker   ; tasing you for every semicolon you forget
-        +childframe)     ; use childframes for error popups (Emacs 26+ only)
-       workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
        (company          ; the ultimate code completion backend
@@ -32,7 +21,7 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        ;;doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
+       ophints
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -48,32 +37,43 @@
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
+       workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
+       (evil +everywhere); come to the dark side, we have cookies
+       file-templates    ; auto-snippets for empty files
+       fold
        (format +onsave)  ; automated prettiness
        lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
+       snippets          ; my elves. They type so I don't have to
 
        :emacs
        (dired            ; making dired pretty [functional]
         +ranger          ; bringing the goodness of ranger to dired
         +icons)          ; colorful icons for dired-mode
-       ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
-       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
-       term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
 
+       :term
+       eshell            ; a consistent, cross-platform shell (WIP)
+       term              ; terminals in Emacs
        :tools
        ;;ansible
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
+       eval              ; run code, run (also, repls)
+       flyspell
+       (flycheck
+        +childframe)     ; use childframes for error popups (Emacs 26+ only)
        ;;gist              ; interacting with github gists
+       (lookup           ; helps you navigate your code and documentation
+        +devdocs         ; ...on devdocs.io online
+        +docsets)        ; ...or in Dash docsets locally
        macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
