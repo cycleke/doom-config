@@ -36,6 +36,10 @@ typedef vector<pii> vpii;
   cin >> o_o;                                                                  \
   for (int case_count = 0; case_count < o_o; ++case_count)
 #define debug(...) fprintf(stderr, __VA_ARGS__)
+#define dbg(x)                                                                 \
+  cout << "debug: " << __FUNCTION__ << "() @ " << __TIMESTAMP__ << "\n"        \
+       << __FILE__ << " L" << __LINE__ << "\n"                                 \
+       << #x " = " << (x) << endl
 
 const int INF = 0x3ffffff;
 const ll LL_INF = 0x3fffffffffffffffll;
